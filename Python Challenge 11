@@ -1,45 +1,12 @@
-import re
-
-
-
-value=[]
-
-items=[x for x in raw_input("Enter a password: ").split(",")]
-
-for p in items:
-
-	if len(p)<6 or len(p)>12:
-
-		continue
-
+s=raw_input("Enter sentences with lower and upper case letters: ")
+d={"UPPER":0, "LOWER":0}
+for c in s:
+	if c.isupper():
+		d["UPPER"]+=1
+	elif c.islower():
+		d["LOWER"]+=1
 	else:
-
 		pass
 
-	if not re.search("[a-z]",p):
-
-		continue
-
-	elif not re.search("[A-Z]",p):
-
-		continue
-
-	elif not re.search("[$#%]",p):
-
-		continue
-
-	elif not re.search("[0-9]",p):
-
-		continue
-
-	elif re.search("\s",p):
-
-		continue
-
-	else:
-
-		pass
-
-	value.append(p)
-
-print ",".join(value)
+print "Upper", d["UPPER"]
+print "Lower", d["LOWER"]
