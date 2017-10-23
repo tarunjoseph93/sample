@@ -1,9 +1,26 @@
 pipeline {
-    agent { docker 'python:3.5.1' }
+    agent none
     stages {
-        stage('build') {
+        stage('say hi') {
             steps {
-                sh 'python --version'
+                echo "I don't need no node"
+            }
+        }
+        stage('build') {
+             agent {
+                 label 'master'
+             }
+             steps {   
+                checkout scm
+                sh 'echo from master'
+            }
+        }
+        stage('deploy') {
+            agent {
+                label 'deploy-host'
+            }
+            steps {
+                sh './deploy-code-here'
             }
         }
     }
